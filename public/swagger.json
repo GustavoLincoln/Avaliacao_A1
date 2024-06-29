@@ -1,0 +1,208 @@
+{
+  "openapi": "3.0.0",
+  "components": {
+    "examples": {},
+    "headers": {},
+    "parameters": {},
+    "requestBodies": {},
+    "responses": {},
+    "schemas": {
+      "PingResponse": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Icecream": {
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "hello-express",
+    "version": "1.0.0",
+    "description": "basic API using Node and Express",
+    "license": {
+      "name": "MIT"
+    },
+    "contact": {}
+  },
+  "paths": {
+    "/api/ping": {
+      "get": {
+        "operationId": "Ping",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": []
+      }
+    },
+    "/api/icecream/getAll": {
+      "get": {
+        "operationId": "All",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Icecream"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": []
+      }
+    },
+    "/api/icecream/create": {
+      "post": {
+        "operationId": "Create",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Icecream"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/icecream/update": {
+      "put": {
+        "operationId": "Update",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Icecream"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                },
+                "required": [
+                  "name",
+                  "id"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/icecream/delete/{id}": {
+      "delete": {
+        "operationId": "Delete",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number",
+                  "format": "double"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ]
+}
